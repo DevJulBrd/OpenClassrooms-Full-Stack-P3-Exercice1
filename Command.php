@@ -102,4 +102,12 @@ class Command
         echo "   delete <id> : Supprime le contact avec l'ID spécifié\n";
         echo "   quit : Quitte l'application\n";
     }
+
+    // Command 'quit'
+    public function quitCmd(): void
+    {
+        echo "Au revoir!\n";
+        exit(0);
+    }
+
 }

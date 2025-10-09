@@ -58,8 +58,9 @@ while (true) {
         continue;
     }
 
+    // Command 'quit'
     if ($input === 'quit') {
-        echo "Au revoir\n";
+        $command->quitCmd();
         break;
     }
 
