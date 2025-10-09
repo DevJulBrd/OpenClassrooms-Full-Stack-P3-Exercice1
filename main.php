@@ -18,8 +18,16 @@ while (true) {
     if ($line === false) { echo PHP_EOL; break; }
     $input = strtolower(trim($line));
 
+    // Command 'list'
     if ($input === 'list') {
         $command->listCmd();
+        continue;
+    }
+
+    // Command 'detail <id>'
+    if (preg_match('/^detail\s+(\d+)$/i', $input, $m)) {
+        $id = (int)$m[1];
+        $command->detailCmd($id);
         continue;
     }
 

@@ -31,4 +31,17 @@ class Command
             }
         }
     }
+
+    // Command 'detail <id>', displays details of a contact by ID
+    public function detailCmd(int $id): void
+    {
+        $contact = $this->manager->findById($id);
+
+        if ($contact === null) {
+            echo "Contact avec l'ID {$id} non trouvé." . PHP_EOL;
+            return;
+        }
+
+        echo $contact->toString() . PHP_EOL;
+    }
 }

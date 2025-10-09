@@ -27,4 +27,20 @@ class ContactManager
         
         return $contacts;
     }
+
+    // Find a contact by ID
+    public function findById(int $id): ?Contact
+    {
+        $sql = 'SELECT * FROM contact WHERE id = :id';
+        $statment = $this->pdo->prepare($sql);
+        $statment->bindValue(':id', $id, PDO::PARAM_INT);
+        $statment->execute();
+        $row = $statment->fetch();
+
+        if ($row === false) {
+            return null;
+        }
+
+        return Contact::fromArray($row);
+    }
 }
