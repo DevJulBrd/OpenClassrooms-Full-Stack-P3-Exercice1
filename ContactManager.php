@@ -43,4 +43,19 @@ class ContactManager
 
         return Contact::fromArray($row);
     }
+
+    // Create a new contact
+    public function create(string $name, string $email, string $phone_number): Contact
+    {
+        $sql = 'INSERT INTO contact (name, email, phone_number)VALUES (:name, :email, :phone_number)';
+        $statment = $this->pdo->prepare($sql);
+        $statment->bindValue(':name', $name, PDO::PARAM_STR);
+        $statment->bindValue(':email', $email, PDO::PARAM_STR);
+        $statment->bindValue(':phone_number', $phone_number, PDO::PARAM_STR);
+        $statment->execute();
+
+        // Display the created contact with its new ID
+        $id = (int)$this->pdo->lastInsertId();
+        return new Contact($id, $name, $email, $phone_number);
+    }
 }

@@ -44,4 +44,29 @@ class Command
 
         echo $contact->toString() . PHP_EOL;
     }
+
+    // Command 'create <name> <email> <phone_number>', creates a new contact
+    public function createCmd(string $name, string $email, string $phone_number): void
+    {
+        $name  = trim($name);
+        $email = trim($email);
+        $phone_number = trim($phone_number);
+
+        if ($name === '') {
+            echo "Erreur: le nom est requis." . PHP_EOL;
+            return;
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "Erreur: email invalide." . PHP_EOL;
+            return;
+        }
+
+        try {
+            $contact = $this->manager->create($name, $email, $phone_number);
+            echo "Contact créé: " . $contact->toString() . PHP_EOL;
+        } catch (Throwable $e) {
+            echo "Erreur lors de la création: " . $e->getMessage() . PHP_EOL;
+        }
+    }
 }

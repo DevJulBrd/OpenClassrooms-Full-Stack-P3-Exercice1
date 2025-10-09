@@ -31,6 +31,21 @@ while (true) {
         continue;
     }
 
+    // Command 'create <name>, <email>, <phone_number>'
+    if (preg_match(
+    '/^create\s+(?:"([^"]+)"|([^,]+?))\s*,\s*([^,]+)\s*,\s*(.+)$/i',
+    $input,
+    $m
+    )) {
+        // Support both quoted and unquoted names (possibily to add , in the name))
+        $name  = $m[1] !== '' ? trim($m[1]) : trim($m[2]);
+        $email = trim($m[3]);
+        $phone_number = trim($m[4]);
+
+        $command->createCmd($name, $email, $phone_number);
+        continue;
+    }
+
     if ($input === 'quit') {
         echo "Au revoir\n";
         break;
