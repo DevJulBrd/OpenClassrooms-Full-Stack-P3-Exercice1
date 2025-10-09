@@ -90,4 +90,16 @@ class Command
             echo "Erreur lors de la suppression : " . $e->getMessage() . PHP_EOL;
         }
     }
+
+    // Command 'help', displays available commands
+    public function helpCmd(): void
+    {
+        echo "Commandes disponibles:\n";
+        echo "   help : Affiche cette aide\n";
+        echo "   list : Liste tous les contacts\n";
+        echo "   detail <id> : Détaille le contact avec l'ID spécifié\n";
+        echo "   create <name>, <email>, <phone_number> : Crée un nouveau contact\n";
+        echo "   delete <id> : Supprime le contact avec l'ID spécifié\n";
+        echo "   quit : Quitte l'application\n";
+    }
 }

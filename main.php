@@ -14,7 +14,7 @@ $command = new Command($manager);
 
 // Command loop
 while (true) {
-    $line = readline("Entrer votre commande : ");
+    $line = readline("Entrez votre commande (help, list, detail, create, delete, quit) : ");
     if ($line === false) { echo PHP_EOL; break; }
     $input = strtolower(trim($line));
 
@@ -49,6 +49,12 @@ while (true) {
     // Command 'delete <id>'
     if (preg_match('/^delete\s+(\d+)$/i', $input, $m)) {
         $command->deleteCmd((int)$m[1]);
+        continue;
+    }
+
+    // Command 'help'
+    if ($input === 'help') {
+        $command->helpCmd();
         continue;
     }
 
