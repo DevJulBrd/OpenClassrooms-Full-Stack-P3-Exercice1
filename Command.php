@@ -8,7 +8,7 @@ class Command
 
     private $manager;
 
-    public function __construct(ContactManager $manager)
+    public function _construct(ContactManager $manager)
     {
         $this->manager = $manager;
     }

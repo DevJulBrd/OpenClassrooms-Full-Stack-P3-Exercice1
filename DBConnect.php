@@ -9,7 +9,7 @@ final class DBConnect
     private string $charset = 'utf8';
 
     // DSN structure
-    public function __construct (
+    public function _construct (
         string $host,
         int $port,
         string $dbname,

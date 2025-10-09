@@ -6,7 +6,7 @@ class Contact
     private ?string $email = null;
     private ?string $phone_number = null;
 
-    public function __construct(
+    public function _construct(
         ?int $id = null,
         ?string $name = null,
         ?string $email = null,
@@ -42,7 +42,7 @@ class Contact
     public function setPhone(?string $phone_number): void{ $this->phone_number = $phone_number; }
 
     // String representation
-    public function __toString(): string
+    public function _toString(): string
     {
         $id = $this->id !== null ? "#{$this->id}" : "#?";
         $name = $this->name ?? "(sans nom)";
@@ -54,6 +54,6 @@ class Contact
     // Alias for toString
     public function toString(): string
     {
-        return $this->__toString();
+        return $this->_toString();
     }
 }
