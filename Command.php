@@ -32,7 +32,7 @@ class Command
         }
     }
 
-    // Command 'detail <id>', displays details of a contact by ID
+    // Command 'detail <id>', displays details of a contact by id
     public function detailCmd(int $id): void
     {
         $contact = $this->manager->findById($id);
@@ -67,6 +67,27 @@ class Command
             echo "Contact créé: " . $contact->toString() . PHP_EOL;
         } catch (Throwable $e) {
             echo "Erreur lors de la création: " . $e->getMessage() . PHP_EOL;
+        }
+    }
+
+    // Command 'delete <id>', delete a contact by id
+    public function deleteCmd(int $id): void
+    {
+        $before = $this->manager->findById($id);
+        if ($before === null) {
+            echo "Contact #{$id} introuvable." . PHP_EOL;
+            return;
+        }
+
+        try {
+            $ok = $this->manager->deleteById($id);
+            if ($ok) {
+                echo "Contact supprimé : " . $before->toString() . PHP_EOL;
+            } else {
+                echo "Aucune suppression effectuée (contact #{$id})." . PHP_EOL;
+            }
+        } catch (Throwable $e) {
+            echo "Erreur lors de la suppression : " . $e->getMessage() . PHP_EOL;
         }
     }
 }

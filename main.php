@@ -46,6 +46,12 @@ while (true) {
         continue;
     }
 
+    // Command 'delete <id>'
+    if (preg_match('/^delete\s+(\d+)$/i', $input, $m)) {
+        $command->deleteCmd((int)$m[1]);
+        continue;
+    }
+
     if ($input === 'quit') {
         echo "Au revoir\n";
         break;

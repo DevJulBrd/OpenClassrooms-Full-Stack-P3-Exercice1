@@ -54,8 +54,19 @@ class ContactManager
         $statment->bindValue(':phone_number', $phone_number, PDO::PARAM_STR);
         $statment->execute();
 
-        // Display the created contact with its new ID
+        // Display the created contact
         $id = (int)$this->pdo->lastInsertId();
         return new Contact($id, $name, $email, $phone_number);
+    }
+
+    // Delete a contact by id
+    public function deleteById(int $id): bool
+    {
+        $sql = 'DELETE FROM contact WHERE id = :id';
+        $statment = $this->pdo->prepare($sql);
+        $statment->bindValue(':id', $id, PDO::PARAM_INT);
+        $statment->execute();
+
+        return $statment->rowCount() === 1;
     }
 }
