@@ -8,7 +8,7 @@ class Command
 
     private $manager;
 
-    public function _construct(ContactManager $manager)
+    public function __construct(ContactManager $manager)
     {
         $this->manager = $manager;
     }
@@ -23,12 +23,11 @@ class Command
             return;
         }
 
+        echo "Liste des contacts : " . PHP_EOL;
+        echo "id, name, email, phone_number" . PHP_EOL;
+
         foreach ($contacts as $contact) {
-            if (method_exists($contact, 'toString')) {
-                echo $contact->toString() . PHP_EOL;
-            } else {
-                echo (string)$contact . PHP_EOL;
-            }
+            echo $contact . PHP_EOL;
         }
     }
 
@@ -42,7 +41,7 @@ class Command
             return;
         }
 
-        echo $contact->toString() . PHP_EOL;
+        echo $contact . PHP_EOL;
     }
 
     // Command 'create <name> <email> <phone_number>', creates a new contact
@@ -64,7 +63,7 @@ class Command
 
         try {
             $contact = $this->manager->create($name, $email, $phone_number);
-            echo "Contact créé: " . $contact->toString() . PHP_EOL;
+            echo "Contact créé: " . $contact . PHP_EOL;
         } catch (Throwable $e) {
             echo "Erreur lors de la création: " . $e->getMessage() . PHP_EOL;
         }
@@ -82,7 +81,7 @@ class Command
         try {
             $ok = $this->manager->deleteById($id);
             if ($ok) {
-                echo "Contact supprimé : " . $before->toString() . PHP_EOL;
+                echo "Contact supprimé : " . $before . PHP_EOL;
             } else {
                 echo "Aucune suppression effectuée (contact #{$id})." . PHP_EOL;
             }
@@ -106,7 +105,7 @@ class Command
     // Command 'quit'
     public function quitCmd(): void
     {
-        echo "Au revoir!\n";
+        echo "Au revoir !\n";
         exit(0);
     }
 

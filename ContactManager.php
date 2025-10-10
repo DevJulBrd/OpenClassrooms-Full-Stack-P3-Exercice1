@@ -3,7 +3,7 @@ class ContactManager
 {
     private $pdo;
 
-    public function _construct(PDO $pdo)
+    public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
     }
