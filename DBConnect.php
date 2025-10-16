@@ -1,11 +1,11 @@
 <?php
 final class DBConnect
 {
-    private string $host = '127.0.0.1';
-    private int $port = 3306;
-    private string $dbname = 'P3-exercice1-CLI';
-    private string $user = 'root';
-    private string $password = '';
+    private string $host = DB_HOST; ;
+    private int $port = DB_PORT;
+    private string $dbname = DB_NAME;
+    private string $user = DB_USER;
+    private string $password = DB_PASSWORD;
     private string $charset = 'utf8';
 
     // DSN structure
