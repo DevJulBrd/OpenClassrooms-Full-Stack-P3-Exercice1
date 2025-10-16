@@ -1,11 +1,19 @@
 <?php 
+require __DIR__ . '/config.php';
 require __DIR__ . '/DBConnect.php';
 require __DIR__ . '/Contact.php';
 require __DIR__ . '/ContactManager.php';
 require __DIR__ . '/Command.php';
 
 // Connexion base de données
-$db  = new DBConnect('127.0.0.1', 3306, 'P3-exercice1-CLI', 'root', '', 'utf8mb4');
+$db  = new DBConnect(
+    DB_HOST,
+    DB_PORT,
+    DB_NAME,
+    DB_USER,
+    DB_PASSWORD,
+    DB_CHARSET
+);
 $pdo = $db->getPDO();
 
 $manager = new ContactManager($pdo);

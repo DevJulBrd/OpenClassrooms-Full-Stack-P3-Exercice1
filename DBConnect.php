@@ -1,7 +1,7 @@
 <?php
 final class DBConnect
 {
-    private string $host = DB_HOST; ;
+    private string $host = DB_HOST;
     private int $port = DB_PORT;
     private string $dbname = DB_NAME;
     private string $user = DB_USER;
