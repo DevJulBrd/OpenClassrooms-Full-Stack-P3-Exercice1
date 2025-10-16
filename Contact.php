@@ -18,7 +18,11 @@ class Contact
         $this->phone_number = $phone_number;
     }
 
-    // Create Contact from array
+    /**
+     * Créée un Contact à partir d'un tableau associatif
+     * @param array $row
+     * @return Contact
+     */
     public static function fromArray(array $row): self
     {
         return new self(
@@ -41,7 +45,7 @@ class Contact
     public function setEmail(?string $email): void{ $this->email = $email; }
     public function setPhone(?string $phone_number): void{ $this->phone_number = $phone_number; }
 
-    // String representation
+    // Présentation String
     public function __toString(): string
     {
         $id = $this->id !== null ? "#{$this->id}" : "#?";

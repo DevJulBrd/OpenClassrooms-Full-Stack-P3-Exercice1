@@ -8,7 +8,10 @@ class ContactManager
         $this->pdo = $pdo;
     }
 
-    // Find all contacts
+    /**
+     * Tous les contacts
+     * @return Contact[]
+     */
     public function findAll() : array
     {
         // SQL request
@@ -28,7 +31,11 @@ class ContactManager
         return $contacts;
     }
 
-    // Find a contact by ID
+    /**
+     * Contact par ID
+     * @param int $id
+     * @return Contact|null
+     */
     public function findById(int $id): ?Contact
     {
         $sql = 'SELECT * FROM contact WHERE id = :id';
@@ -44,7 +51,13 @@ class ContactManager
         return Contact::fromArray($row);
     }
 
-    // Create a new contact
+    /**
+     * Créer un contact
+     * @param string $name
+     * @param string $email
+     * @param string $phone_number
+     * @return Contact
+     */
     public function create(string $name, string $email, string $phone_number): Contact
     {
         $sql = 'INSERT INTO contact (name, email, phone_number)VALUES (:name, :email, :phone_number)';
@@ -59,7 +72,11 @@ class ContactManager
         return new Contact($id, $name, $email, $phone_number);
     }
 
-    // Delete a contact by id
+    /**
+     * Supprimer un contact par ID
+     * @param int $id
+     * @return bool
+     */
     public function deleteById(int $id): bool
     {
         $sql = 'DELETE FROM contact WHERE id = :id';

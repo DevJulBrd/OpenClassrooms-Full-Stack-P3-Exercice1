@@ -13,7 +13,10 @@ class Command
         $this->manager = $manager;
     }
 
-    // Command 'list', diplays all contacts with Contact::toString()
+    /**
+     * Commande 'list', liste tous les contacts
+     * @return void
+     */
     public function listCmd(): void
     {
         $contacts = $this->manager->findAll();
@@ -31,7 +34,11 @@ class Command
         }
     }
 
-    // Command 'detail <id>', displays details of a contact by id
+    /**
+     * Commande 'detail <id>', affiche les détails d'un contact par son ID
+     * @param int $id
+     * @return void
+     */
     public function detailCmd(int $id): void
     {
         $contact = $this->manager->findById($id);
@@ -44,7 +51,13 @@ class Command
         echo $contact . PHP_EOL;
     }
 
-    // Command 'create <name> <email> <phone_number>', creates a new contact
+    /**
+     * Commande 'create <name>, <email>, <phone_number>', crée un nouveau contact
+     * @param string $name
+     * @param string $email
+     * @param string $phone_number
+     * @return void
+     */
     public function createCmd(string $name, string $email, string $phone_number): void
     {
         $name  = trim($name);
@@ -69,7 +82,11 @@ class Command
         }
     }
 
-    // Command 'delete <id>', delete a contact by id
+    /**
+     * Commande 'delete <id>', supprime un contact par son ID
+     * @param int $id
+     * @return void
+     */
     public function deleteCmd(int $id): void
     {
         $before = $this->manager->findById($id);
@@ -90,7 +107,10 @@ class Command
         }
     }
 
-    // Command 'help', displays available commands
+    /**
+     * Commande 'help', affiche l'aide
+     * @return void
+     */
     public function helpCmd(): void
     {
         echo "Commandes disponibles:\n";
@@ -102,7 +122,10 @@ class Command
         echo "   quit : Quitte l'application\n";
     }
 
-    // Command 'quit'
+    /**
+     * Commande 'quit', quitte l'application
+     * @return void
+     */
     public function quitCmd(): void
     {
         echo "Au revoir !\n";
